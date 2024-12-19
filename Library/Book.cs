@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Library
         {
             if (MessageBox.Show("If this window is closed, the data you entered will be deleted.\n Do you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
+                DB.BookID = 0;
                 this.Close();
             }
         }
@@ -74,7 +76,8 @@ namespace Library
 
             DB.SaveBook(DB.BookID, txtBarcodeNumber.Text, txtBookName.Text, txtAuthor.Text,txtNumberOfPages.Text==string.Empty ? 0 : Convert.ToInt32(
                 txtNumberOfPages.Text), txtType.Text, txtLanguage.Text, txtPublisher.Text,txtYear.Text, PicData);
-
+            DB.BookID = 0;
+            this.Close();
         }
 
         byte[] PicData = null;
@@ -88,7 +91,54 @@ namespace Library
 
         }
 
-       
+        private void Book_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void pboxBook_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Book_Load_1(object sender, EventArgs e)
+        {
+            if (DB.BookID > 0)
+            {
+                txtBarcodeNumber.ReadOnly = true;
+                SqlConnection con = new SqlConnection(DB.Constr);
+                SqlCommand com = new SqlCommand("select * from Book Where BookID = @ID", con);
+                com.Parameters.AddWithValue("@ID", DB.BookID);
+                con.Open();
+                SqlDataReader dr = com.ExecuteReader();
+                String fileName = "";
+                while (dr.Read())
+                {
+                    txtBookName.Text = dr["BookName"].ToString();
+                    txtBarcodeNumber.Text = dr["BarcodeNumber"].ToString();
+                    txtAuthor.Text = dr["Author"].ToString();
+                    txtNumberOfPages.Text = dr["NumberOfPages"].ToString();
+                    txtType.Text = dr["Type"].ToString();
+                    txtLanguage.Text = dr["Language"].ToString();
+                    txtPublisher.Text = dr["Publisher"].ToString();
+                    txtYear.Text = dr["Year"].ToString();
+                    //We are takeing the picture from database.
+                    PicData = (byte[])dr["Picture"];
+                    if (PicData.Length > 4)
+                    {
+                        Guid guid = Guid.NewGuid();
+                        fileName = "C:\\BookStore\\Picture\\Images" + guid.ToString().Substring(0, 5) + ".jpeg";
+                        FileStream fs = new FileStream(fileName, FileMode.Create);
+                        fs.Write(PicData, 0, PicData.Length);
+                        fs.Flush();
+                        fs.Close();
+                        pboxBook.Image = Image.FromFile(fileName);
+                    }
+                }
+                dr.Close();
+                con.Close();
+            }
+        }
     }
 }
 

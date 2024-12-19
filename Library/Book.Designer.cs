@@ -196,6 +196,7 @@
             this.pboxBook.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pboxBook.TabIndex = 8;
             this.pboxBook.TabStop = false;
+            this.pboxBook.Click += new System.EventHandler(this.pboxBook_Click);
             this.pboxBook.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pboxBook_MouseDoubleClick);
             // 
             // btnSave
@@ -270,6 +271,7 @@
             this.Name = "Book";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book";
+            this.Load += new System.EventHandler(this.Book_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pboxBook)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

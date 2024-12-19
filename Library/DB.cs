@@ -12,7 +12,7 @@ namespace Library
     {
         public static int BookID = 0;
         public static bool Stop = false;
-        public static string Constr = "server=DESKTOP-OSFLJP7\\SQLEXPRESS;database=BookStore;Integrated Security=True;";
+        public static string Constr = "server=HIKAMSE\\SQLEXPRESS;database=BookStore;Integrated Security=True;";
 
 
         public static DataSet GetBooks()
