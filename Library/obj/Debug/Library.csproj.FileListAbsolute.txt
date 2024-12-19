@@ -1,0 +1,11 @@
+D:\C#Projeleri\Library\Library\bin\Debug\Library.exe.config
+D:\C#Projeleri\Library\Library\bin\Debug\Library.exe
+D:\C#Projeleri\Library\Library\bin\Debug\Library.pdb
+D:\C#Projeleri\Library\Library\obj\Debug\Library.csproj.AssemblyReference.cache
+D:\C#Projeleri\Library\Library\obj\Debug\Library.Form1.resources
+D:\C#Projeleri\Library\Library\obj\Debug\Library.Properties.Resources.resources
+D:\C#Projeleri\Library\Library\obj\Debug\Library.csproj.GenerateResource.cache
+D:\C#Projeleri\Library\Library\obj\Debug\Library.csproj.CoreCompileInputs.cache
+D:\C#Projeleri\Library\Library\obj\Debug\Library.exe
+D:\C#Projeleri\Library\Library\obj\Debug\Library.pdb
+D:\C#Projeleri\Library\Library\obj\Debug\Library.Book.resources
