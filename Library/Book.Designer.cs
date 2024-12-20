@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Book));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtNumberOfPages = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -47,6 +48,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtYear = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pboxBook)).BeginInit();
             this.SuspendLayout();
             // 
@@ -204,7 +206,7 @@
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSave.BackgroundImage = global::Library.Properties.Resources.diskicon;
             this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSave.Location = new System.Drawing.Point(229, 396);
+            this.btnSave.Location = new System.Drawing.Point(353, 398);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 111);
             this.btnSave.TabIndex = 15;
@@ -216,7 +218,7 @@
             this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnExit.BackgroundImage = global::Library.Properties.Resources.exiticon;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnExit.Location = new System.Drawing.Point(610, 377);
+            this.btnExit.Location = new System.Drawing.Point(628, 398);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(139, 111);
             this.btnExit.TabIndex = 16;
@@ -242,12 +244,25 @@
             this.txtYear.Size = new System.Drawing.Size(202, 26);
             this.txtYear.TabIndex = 17;
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Location = new System.Drawing.Point(12, 398);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(139, 111);
+            this.button1.TabIndex = 19;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Book
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 540);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox15);
             this.Controls.Add(this.txtYear);
             this.Controls.Add(this.btnExit);
@@ -299,5 +314,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox txtYear;
+        private System.Windows.Forms.Button button1;
     }
 }

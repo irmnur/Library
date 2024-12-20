@@ -92,9 +92,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\bookicon.png" />
+    <Content Include="images\Clear.png" />
     <Content Include="images\diskicon.png" />
     <Content Include="images\exiticon.png" />
     <Content Include="images\pictureicon.png" />
+    <Content Include="images\search.png" />
+    <Content Include="images\trash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

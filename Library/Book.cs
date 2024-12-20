@@ -139,6 +139,19 @@ namespace Library
                 con.Close();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach(Control c in this.Controls)
+            {
+                if (c is TextBox && c.TabStop==true)
+                {
+                    c.ResetText();
+                }
+                if (c is PictureBox)
+                    (c as PictureBox).Image = null;
+            }
+        }
     }
 }
 

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,6 +36,7 @@ namespace Library
                 Directory.CreateDirectory("C:\\BookStore");
                 Directory.CreateDirectory("C:\\BookStore\\Picture");
             }
+            this.Text = "Book Store" + Assembly.GetExecutingAssembly().GetName().Version;
         }
 
         private void GetAllBook()
@@ -93,6 +95,52 @@ namespace Library
         }
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("The selected book will be deleted.\n Do you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                int BookID = Convert.ToInt32(dataGridView1.Rows[Row].Cells["ID"].Value);
+                DB.DeleteBook(BookID);
+                GetAllBook();
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DB.Search = !DB.Search;
+            if (DB.Search)
+            {
+                txtArama.ResetText();
+                txtArama.Focus();
+            }
+            gbSearch.Visible = DB.Search;
+            
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           foreach (Control c in this.Controls)
+            {
+                if (c is RadioButton && (c as RadioButton).Checked)
+                {
+                    rbBook = c.Text;
+                }
+            }
+            dataGridView1.DataSource = DB.SearchBook((sender as TextBox).Text,rbBook).Tables[0];
+
 
         }
     }
