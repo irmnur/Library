@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,110 +16,174 @@ namespace Library
         public static string Constr = "server=HIKAMSE\\SQLEXPRESS;database=BookStore;Integrated Security=True;";
 
 
-
         public static DataSet GetBooks()
         {
             DataSet ds = new DataSet();
-            SqlConnection con = new SqlConnection(Constr);
-            SqlDataAdapter da = new SqlDataAdapter("", con);
-            da.Fill(ds);
+            // SqlConnection'ı using ile kullanıyoruz
+            using (SqlConnection con = new SqlConnection(Constr))
+            {
+                // SqlDataAdapter da 'using' ile kullanılmalı
+                using (SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Book", con))
+                {
+                    da.Fill(ds);
+                }
+            }
             return ds;
-
         }
 
-        public static void SaveBook(int BookID, string BarcodeNumber, string BookName, string Author, int NumberOfPages, string Type, string Language, string Publisher, string Year, byte [] Picture)
+        public static void SaveBook(int BookID, string BarcodeNumber, string BookName, string Author, int NumberOfPages, string Type, string Language, string Publisher, string Year, byte[] Picture)
         {
-            SqlConnection con = new SqlConnection(Constr);
-            SqlCommand com = new SqlCommand("if not exists(select * from Book where BookID=@ID) " +
-                "insert into Book (BookName,BarcodeNumber,Author,NumberOfPages,Type,Picture,Language,Publisher,Year) " +
-                "values (@BookName,@BarcodeNumber,@Author,@NumberOfPages,@Type,@Picture,@Language,@Publisher,@Year)" + //Bu saırla verilerin parametre olarak girilmesini sağladık. //With this command, we enabled the data to be entered as parameters
-                " else update Book set BookName=@BookName,BarcodeNumber=@BarcodeNumber,Author=@Author,NumberOfPages=@NumberOfPages,Type=@Type,Picture=@Picture,Language=@Language,Publisher=@Publisher,Year=@Year Where BookID =@ID", con);
-            com.Parameters.AddWithValue("@ID",BookID);
-            com.Parameters.AddWithValue("@BarcodeNumber",BarcodeNumber);
-            com.Parameters.AddWithValue("@BookName", BookName);
-            com.Parameters.AddWithValue("@Author", Author);
-            com.Parameters.AddWithValue("@NumberOfPages", NumberOfPages);
-            com.Parameters.AddWithValue("@Type", Type);
-            com.Parameters.AddWithValue("@Language", Language);
-            com.Parameters.AddWithValue("@Publisher", Publisher);
-            com.Parameters.AddWithValue("@Year", Year);
-            if (Picture == null)
+            // SqlConnection'ı using ile kullanıyoruz
+            using (SqlConnection con = new SqlConnection(Constr))
             {
-                com.Parameters.AddWithValue("@Picture", 0);
+                // SqlCommand'ı using ile kullanıyoruz
+                using (SqlCommand com = new SqlCommand("if not exists(select * from Book where BookID=@ID) " +
+                    "insert into Book (BookName,BarcodeNumber,Author,NumberOfPages,Type,Picture,Language,Publisher,Year) " +
+                    "values (@BookName,@BarcodeNumber,@Author,@NumberOfPages,@Type,@Picture,@Language,@Publisher,@Year)" + //Verilerin parametre olarak girilmesini sağladık
+                    " else update Book set BookName=@BookName,BarcodeNumber=@BarcodeNumber,Author=@Author,NumberOfPages=@NumberOfPages,Type=@Type,Picture=@Picture,Language=@Language,Publisher=@Publisher,Year=@Year Where BookID =@ID", con))
+                {
+                    com.Parameters.AddWithValue("@ID", BookID);
+                    com.Parameters.AddWithValue("@BarcodeNumber", BarcodeNumber);
+                    com.Parameters.AddWithValue("@BookName", BookName);
+                    com.Parameters.AddWithValue("@Author", Author);
+                    com.Parameters.AddWithValue("@NumberOfPages", NumberOfPages);
+                    com.Parameters.AddWithValue("@Type", Type);
+                    com.Parameters.AddWithValue("@Language", Language);
+                    com.Parameters.AddWithValue("@Publisher", Publisher);
+                    com.Parameters.AddWithValue("@Year", Year);
+
+                    // Eğer resim null ise, 0 olarak ekliyoruz
+                    if (Picture == null)
+                    {
+                        com.Parameters.AddWithValue("@Picture", 0);
+                    }
+                    else
+                    {
+                        com.Parameters.AddWithValue("@Picture", Picture);
+                    }
+
+                    con.Open();
+                    com.ExecuteNonQuery();
+                }
             }
-            else { 
-                com.Parameters.AddWithValue("@Picture", Picture);            
-            }
- 
-            con.Open();
-            com.ExecuteNonQuery();
-            con.Close();
             BackDatabase();
         }
 
-        public static void DeleteBook(int BookID) 
+        public static void DeleteBook(int BookID)
         {
-            SqlConnection con = new SqlConnection(Constr);
-            SqlCommand com = new SqlCommand("Delete from Book Where BookID = @ID", con);
-            com.Parameters.AddWithValue("@ID", BookID);
-            con.Open();
-            com.ExecuteNonQuery();
-            con.Close();
+            // SqlConnection'ı using ile kullanıyoruz
+            using (SqlConnection con = new SqlConnection(Constr))
+            {
+                // SqlCommand'ı using ile kullanıyoruz
+                using (SqlCommand com = new SqlCommand("Delete from Book Where BookID = @ID", con))
+                {
+                    com.Parameters.AddWithValue("@ID", BookID);
+                    con.Open();
+                    com.ExecuteNonQuery();
+                }
+            }
             BackDatabase();
         }
         public static AutoCompleteStringCollection Authors()
         {
             AutoCompleteStringCollection authors = new AutoCompleteStringCollection();
-            SqlConnection con = new SqlConnection(Constr);
-            SqlCommand com = new SqlCommand("select distinct Author from Book", con);
-            con.Open();
-            SqlDataReader dr = com.ExecuteReader();
-            while (dr.Read())
+
+            // SqlConnection'ı using ile kullanıyoruz
+            using (SqlConnection con = new SqlConnection(Constr))
             {
-                authors.Add(dr["Author"].ToString());
+                // SqlCommand'ı using ile kullanıyoruz
+                using (SqlCommand com = new SqlCommand("select distinct Author from Book", con))
+                {
+                    con.Open();
+                    // SqlDataReader'ı using ile kullanıyoruz
+                    using (SqlDataReader dr = com.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            authors.Add(dr["Author"].ToString());
+                        }
+                    }
+                }
             }
-            dr.Close(); 
-            con.Close();
             return authors;
         }
         public static void BackDatabase()
         {
-            SqlConnection con = new SqlConnection(Constr);
-            SqlCommand com = new SqlCommand("backup database BookStore to disk='C:\\BookStore\\BookStore.bak' with format",con);
-            con.Open();
-            com.ExecuteNonQuery();
-            con.Close();
+            // SqlConnection'ı using ile kullanıyoruz
+            using (SqlConnection con = new SqlConnection(Constr))
+            {
+                // SqlCommand'ı using ile kullanıyoruz
+                using (SqlCommand com = new SqlCommand("backup database BookStore to disk='C:\\BookStore\\BookStore.bak' with format", con))
+                {
+                    con.Open();
+                    com.ExecuteNonQuery();
+                }
+            }
         }
 
         public static DataSet SearchBook(string text, string radiobutton)
         {
             DataSet ds = new DataSet();
-            SqlConnection con = new SqlConnection(Constr);
-            switch(radiobutton)
+            string query = "";  // SQL sorgusunu buraya depolayacağız
+
+            // Veritabanı bağlantısını 'using' bloğuyla kullanalım
+            using (SqlConnection con = new SqlConnection(Constr))
             {
-                case "Barcode Number":
-                    {
-                        SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author as [Author], NumberOfPages as [Number of Pages], Type as [Type], Picture as [Picture], Language as [Language], Publisher as [Publisher], Year as [Year] from Book Where Barcode Number like '%'+@BarcodeNumber +'%' ", con);
-                        da.SelectCommand.Parameters.AddWithValue("@BarcodeNumber", text);
-                        da.Fill(ds);
+                con.Open();
+
+                switch (radiobutton)
+                {
+                    case "Barcode Number":
+                        query = "select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author as [Author], " +
+                                "NumberOfPages as [Number of Pages], Type as [Type], Picture as [Picture], Language as [Language], " +
+                                "Publisher as [Publisher], Year as [Year] from Book WHERE BarcodeNumber LIKE '%' + @BarcodeNumber + '%'";
                         break;
-                    }
-                case "Book Name":
-                    {
-                        SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author as [Author], NumberOfPages as [Number of Pages], Type as [Type], Picture as [Picture], Language as [Language], Publisher as [Publisher], Year as [Year] from Book Where BookName like '%'+@BookName +'%' ", con);
-                        da.SelectCommand.Parameters.AddWithValue("@BookName", text.ToUpper());
-                        da.Fill(ds);
+
+                    case "Book Name":
+                        query = "select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author as [Author], " +
+                                "NumberOfPages as [Number of Pages], Type as [Type], Picture as [Picture], Language as [Language], " +
+                                "Publisher as [Publisher], Year as [Year] from Book WHERE BookName LIKE '%' + @BookName + '%'";
                         break;
-                    }
-                case "Author":
-                    {
-                        SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author as [Author], NumberOfPages as [Number of Pages], Type as [Type], Picture as [Picture], Language as [Language], Publisher as [Publisher], Year as [Year] from Book Where Author like '%'+@Author +'%' ", con);
-                        da.SelectCommand.Parameters.AddWithValue("@Author", text.ToUpper());
-                        da.Fill(ds);
+
+                    case "Author":
+                        query = "select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author as [Author], " +
+                                "NumberOfPages as [Number of Pages], Type as [Type], Picture as [Picture], Language as [Language], " +
+                                "Publisher as [Publisher], Year as [Year] from Book WHERE Author LIKE '%' + @Author + '%'";
                         break;
+
+                    default:
+                        // Geçerli bir sorgu yoksa boş bırakabiliriz
+                        break;
+                }
+
+                // Sorgu boş değilse, SqlDataAdapter ile veri çekmeye başlıyoruz
+                if (!string.IsNullOrEmpty(query))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, con))
+                    {
+                        // Parametre ekliyoruz
+                        switch (radiobutton)
+                        {
+                            case "Barcode Number":
+                                da.SelectCommand.Parameters.AddWithValue("@BarcodeNumber", text);
+                                break;
+                            case "Book Name":
+                                da.SelectCommand.Parameters.AddWithValue("@BookName", text.ToUpper());
+                                break;
+                            case "Author":
+                                da.SelectCommand.Parameters.AddWithValue("@Author", text.ToUpper());
+                                break;
+                        }
+
+                        // Veriyi DataSet'e yüklüyoruz
+                        da.Fill(ds);
                     }
+                }
             }
+
             return ds;
+
+
         }
     }
 }

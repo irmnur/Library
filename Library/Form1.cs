@@ -50,9 +50,19 @@ namespace Library
 
         private void GetAllBook()
         {
-            dataGridView1.DataSource = DB.GetBooks().Tables[0];
-            dataGridView1.Columns["ID"].Visible = false;
-            dataGridView1.Columns["Picture"].Visible = false;
+            var booksTable = DB.GetBooks().Tables[0];
+            if (booksTable != null)
+            {
+                dataGridView1.DataSource = booksTable;
+                if (dataGridView1.Columns.Contains("ID"))
+                {
+                    dataGridView1.Columns["ID"].Visible = false;
+                }
+                if (dataGridView1.Columns.Contains("Picture"))
+                {
+                    dataGridView1.Columns["Picture"].Visible = false;
+                }
+            }
         }
 
 
