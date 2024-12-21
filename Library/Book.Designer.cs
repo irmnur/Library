@@ -84,11 +84,14 @@
             // 
             // txtAuthor
             // 
+            this.txtAuthor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtAuthor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtAuthor.Location = new System.Drawing.Point(229, 107);
             this.txtAuthor.Name = "txtAuthor";
             this.txtAuthor.Size = new System.Drawing.Size(202, 26);
             this.txtAuthor.TabIndex = 3;
+            this.txtAuthor.Text = " ";
             // 
             // textBox5
             // 

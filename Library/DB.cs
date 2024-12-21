@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Library
 {
@@ -67,10 +68,25 @@ namespace Library
             con.Close();
             BackDatabase();
         }
+        public static AutoCompleteStringCollection Authors()
+        {
+            AutoCompleteStringCollection authors = new AutoCompleteStringCollection();
+            SqlConnection con = new SqlConnection(Constr);
+            SqlCommand com = new SqlCommand("select distinct Author from Book", con);
+            con.Open();
+            SqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                authors.Add(dr["Author"].ToString());
+            }
+            dr.Close(); 
+            con.Close();
+            return authors;
+        }
         public static void BackDatabase()
         {
             SqlConnection con = new SqlConnection(Constr);
-            SqlCommand com = new SqlCommand("backup database BookStore to disk='D:\\BookStore\\BookStore.bak' with format",con);
+            SqlCommand com = new SqlCommand("backup database BookStore to disk='C:\\BookStore\\BookStore.bak' with format",con);
             con.Open();
             com.ExecuteNonQuery();
             con.Close();

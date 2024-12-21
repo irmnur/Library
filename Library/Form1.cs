@@ -38,6 +38,13 @@ namespace Library
                 Directory.CreateDirectory("C:\\BookStore");
                 Directory.CreateDirectory("C:\\BookStore\\Picture");
             }
+            string[] files= Directory.GetFiles("C:\\BookStore\\Picture");
+            foreach (string file in files)
+            {
+                File.Delete(file);
+
+            }
+
             this.Text = "Book Store" + Assembly.GetExecutingAssembly().GetName().Version;
         }
 
@@ -52,7 +59,7 @@ namespace Library
         private void button2_Click_1(object sender, EventArgs e)
         {
             DB.Stop = true;
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -139,15 +146,17 @@ namespace Library
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string rbName = ""; 
+            string rbName = "";
             foreach (Control c in gbSearch.Controls)
             {
-                if (c is RadioButton && (c as RadioButton).Checked)
+                if (c is System.Windows.Forms.RadioButton && (c as System.Windows.Forms.RadioButton).Checked)
                 {
                     rbName = c.Text;
                 }
             }
             dataGridView1.DataSource = DB.SearchBook((sender as TextBox).Text, rbName).Tables[0];
         }
+
+        
     }
 }

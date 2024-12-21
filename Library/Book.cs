@@ -102,6 +102,7 @@ namespace Library
 
         private void Book_Load_1(object sender, EventArgs e)
         {
+            Options();
             if (DB.BookID > 0)
             {
                 txtBarcodeNumber.ReadOnly = true;
@@ -139,16 +140,24 @@ namespace Library
             }
         }
 
+        private void Options()
+        {
+            txtAuthor.AutoCompleteCustomSource = DB.Authors();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach(Control c in this.Controls)
+            if (MessageBox.Show("Girmiş olduğunuz veriler silinecektir.\nDevam edilsin mi?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                if (c is TextBox && c.TabStop==true)
+                foreach (Control c in this.Controls)
                 {
-                    c.ResetText();
+                    if (c is TextBox && c.TabStop == true)
+                    {
+                        c.ResetText();
+                    }
+                    if (c is PictureBox)
+                        (c as PictureBox).Image = Image.FromFile("");
                 }
-                if (c is PictureBox)
-                    (c as PictureBox).Image = Image.FromFile("");
             }
         }
 
