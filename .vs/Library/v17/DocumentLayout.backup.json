@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A5122CC9-538C-4493-89FC-0D39E5827F1B}|Library\\Library.csproj|C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\library\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5122CC9-538C-4493-89FC-0D39E5827F1B}|Library\\Library.csproj|solutionrelative:library\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A5122CC9-538C-4493-89FC-0D39E5827F1B}|Library\\Library.csproj|c:\\users\\monster\\documents\\github\\library\\library\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5122CC9-538C-4493-89FC-0D39E5827F1B}|Library\\Library.csproj|solutionrelative:library\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A5122CC9-538C-4493-89FC-0D39E5827F1B}|Library\\Library.csproj|C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\library\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A5122CC9-538C-4493-89FC-0D39E5827F1B}|Library\\Library.csproj|solutionrelative:library\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5122CC9-538C-4493-89FC-0D39E5827F1B}|Library\\Library.csproj|C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\library\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5122CC9-538C-4493-89FC-0D39E5827F1B}|Library\\Library.csproj|solutionrelative:library\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5122CC9-538C-4493-89FC-0D39E5827F1B}|Library\\Library.csproj|C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\library\\db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -51,13 +51,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\Library\\Form1.cs",
               "RelativeDocumentMoniker": "Library\\Form1.cs",
               "ToolTip": "C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\Library\\Form1.cs",
               "RelativeToolTip": "Library\\Form1.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAwwHYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAgwCgAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-19T16:01:40.812Z",
               "IsPinned": true,
@@ -73,20 +73,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\Library\\Book.cs",
               "RelativeDocumentMoniker": "Library\\Book.cs",
               "ToolTip": "C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\Library\\Book.cs",
               "RelativeToolTip": "Library\\Book.cs",
-              "ViewState": "AgIAAHwAAAAAAAAAAAASwJ4AAABFAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAASwFcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-19T20:41:17.624Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Book.cs [Tasar\u0131m]",
               "DocumentMoniker": "C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\Library\\Book.cs",
               "RelativeDocumentMoniker": "Library\\Book.cs",
@@ -98,15 +98,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Tasar\u0131m]",
               "DocumentMoniker": "C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\Library\\Form1.cs",
               "RelativeDocumentMoniker": "Library\\Form1.cs",
               "ToolTip": "C:\\Users\\MONSTER\\Documents\\GitHub\\Library\\Library\\Form1.cs [Tasar\u0131m]",
               "RelativeToolTip": "Library\\Form1.cs [Tasar\u0131m]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-20T17:40:05.983Z",
-              "EditorCaption": " [Tasar\u0131m]"
+              "WhenOpened": "2024-12-20T17:40:05.983Z"
             },
             {
               "$type": "Document",

@@ -123,7 +123,7 @@ namespace Library
             if (Row >= 0 && Row < dataGridView1.Rows.Count)
             {
                 // BookID değerini al
-                int BookID = Convert.ToInt32(dataGridView1.Rows[Row].Cells["ID"].Value);
+                int BookID = Convert.ToInt32(dataGridView1.Rows[Row].Cells["BookID"].Value);
 
                 // BookID'nin geçerli bir değer olup olmadığını kontrol et
                 if (BookID > 0)
@@ -147,6 +147,7 @@ namespace Library
                 MessageBox.Show("Please select a valid book to delete.");
             }
         }
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 

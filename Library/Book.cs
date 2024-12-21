@@ -156,7 +156,7 @@ namespace Library
                         c.ResetText();
                     }
                     if (c is PictureBox)
-                        (c as PictureBox).Image = Image.FromFile("");
+                        (c as PictureBox).Image = null;
                 }
             }
         }
