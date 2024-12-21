@@ -38,7 +38,7 @@ namespace Library
                 Directory.CreateDirectory("C:\\BookStore");
                 Directory.CreateDirectory("C:\\BookStore\\Picture");
             }
-            string[] files= Directory.GetFiles("C:\\BookStore\\Picture");
+            string[] files = Directory.GetFiles("C:\\BookStore\\Picture");
             foreach (string file in files)
             {
                 File.Delete(file);
@@ -119,14 +119,34 @@ namespace Library
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("The selected book will be deleted.\n Do you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            // Geçerli bir satır seçildi mi?
+            if (Row >= 0 && Row < dataGridView1.Rows.Count)
             {
+                // BookID değerini al
                 int BookID = Convert.ToInt32(dataGridView1.Rows[Row].Cells["ID"].Value);
-                DB.DeleteBook(BookID);
-                GetAllBook();
+
+                // BookID'nin geçerli bir değer olup olmadığını kontrol et
+                if (BookID > 0)
+                {
+                    // Silme işlemi için onay penceresi
+                    if (MessageBox.Show("The selected book will be deleted.\n Do you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        // Veritabanında silme işlemi
+                        DB.DeleteBook(BookID);
+                        // Kitaplar listesini yeniden yükle
+                        GetAllBook();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Book ID.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a valid book to delete.");
             }
         }
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -146,7 +166,6 @@ namespace Library
                 txtSearch.Focus();
             }
             gbSearch.Visible = DB.Search;
-            
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -167,6 +186,6 @@ namespace Library
             dataGridView1.DataSource = DB.SearchBook((sender as TextBox).Text, rbName).Tables[0];
         }
 
-        
+
     }
 }
