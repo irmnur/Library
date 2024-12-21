@@ -66,9 +66,8 @@ namespace Library
 
             if (!Full)
             {
-                MessageBox.Show("Barkod numarası ve kitap adı sekmeleri boş bırakılamaz", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-             
-
+                MessageBox.Show("Barkod numarası ve kitap adı sekmeleri boş bırakılamaz", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             
 
@@ -149,9 +148,10 @@ namespace Library
                     c.ResetText();
                 }
                 if (c is PictureBox)
-                    (c as PictureBox).Image = null;
+                    (c as PictureBox).Image = Image.FromFile("");
             }
         }
+
     }
 }
 

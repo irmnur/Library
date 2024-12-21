@@ -16,14 +16,13 @@ namespace Library
         public static string Constr = "server=HIKAMSE\\SQLEXPRESS;database=BookStore;Integrated Security=True;";
 
 
+
         public static DataSet GetBooks()
         {
             DataSet ds = new DataSet();
             SqlConnection con = new SqlConnection(Constr);
-            SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author, NumberOfPages as [Number of Pages], Type, Picture, Language, Publisher, Year from Book", con);
+            SqlDataAdapter da = new SqlDataAdapter("", con);
             da.Fill(ds);
-            
-            
             return ds;
 
         }
@@ -85,21 +84,21 @@ namespace Library
             {
                 case "Barcode Number":
                     {
-                        SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author, NumberOfPages as [Number of Pages], Type, Picture, Language, Publisher, Year from Book Where Barcode Number like '%'+@BarcodeNumber +'%' ", con);
+                        SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author as [Author], NumberOfPages as [Number of Pages], Type as [Type], Picture as [Picture], Language as [Language], Publisher as [Publisher], Year as [Year] from Book Where Barcode Number like '%'+@BarcodeNumber +'%' ", con);
                         da.SelectCommand.Parameters.AddWithValue("@BarcodeNumber", text);
                         da.Fill(ds);
                         break;
                     }
                 case "Book Name":
                     {
-                        SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author, NumberOfPages as [Number of Pages], Type, Picture, Language, Publisher, Year from Book Where Book Name like '%'+@BookName +'%' ", con);
-                        da.SelectCommand.Parameters.AddWithValue("@BookName", text);
+                        SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author as [Author], NumberOfPages as [Number of Pages], Type as [Type], Picture as [Picture], Language as [Language], Publisher as [Publisher], Year as [Year] from Book Where BookName like '%'+@BookName +'%' ", con);
+                        da.SelectCommand.Parameters.AddWithValue("@BookName", text.ToUpper());
                         da.Fill(ds);
                         break;
                     }
                 case "Author":
                     {
-                        SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author, NumberOfPages as [Number of Pages], Type, Picture, Language, Publisher, Year from Book Where Author like '%'+@Author +'%' ", con);
+                        SqlDataAdapter da = new SqlDataAdapter("select BookID as [ID], BookName as [Book Name], BarcodeNumber as [Barcode Number], Author as [Author], NumberOfPages as [Number of Pages], Type as [Type], Picture as [Picture], Language as [Language], Publisher as [Publisher], Year as [Year] from Book Where Author like '%'+@Author +'%' ", con);
                         da.SelectCommand.Parameters.AddWithValue("@Author", text.ToUpper());
                         da.Fill(ds);
                         break;

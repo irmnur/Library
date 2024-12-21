@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\bookicon.png" />
+    <Content Include="images\clear %282%29.png" />
     <Content Include="images\Clear.png" />
     <Content Include="images\diskicon.png" />
     <Content Include="images\exiticon.png" />

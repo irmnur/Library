@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Library
 {
@@ -123,25 +125,29 @@ namespace Library
             DB.Search = !DB.Search;
             if (DB.Search)
             {
-                txtArama.ResetText();
-                txtArama.Focus();
+                txtSearch.ResetText();
+                txtSearch.Focus();
             }
             gbSearch.Visible = DB.Search;
             
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-           foreach (Control c in this.Controls)
+            Row = e.RowIndex;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string rbName = ""; 
+            foreach (Control c in gbSearch.Controls)
             {
                 if (c is RadioButton && (c as RadioButton).Checked)
                 {
-                    rbBook = c.Text;
+                    rbName = c.Text;
                 }
             }
-            dataGridView1.DataSource = DB.SearchBook((sender as TextBox).Text,rbBook).Tables[0];
-
-
+            dataGridView1.DataSource = DB.SearchBook((sender as TextBox).Text, rbName).Tables[0];
         }
     }
 }
