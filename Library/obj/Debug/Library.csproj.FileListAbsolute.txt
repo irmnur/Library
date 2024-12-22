@@ -21,3 +21,4 @@ C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.csproj.CoreC
 C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.exe
 C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.pdb
 C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.User_Form.resources
+C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.UpdateBook.resources

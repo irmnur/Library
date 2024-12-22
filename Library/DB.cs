@@ -18,7 +18,7 @@ namespace Library
         public static int UserID = 0;
         public static bool Stop = false;
         public static bool Search = false;
-        public static string Constr = "server=HIKAMSE\\SQLEXPRESS;database=BookStore;Integrated Security=True;";
+        public static string Constr = "HIKAMSE\\SQLEXPRESS;database=BookStore;Integrated Security=True;";
 
 
         public static DataSet GetBooks()
@@ -36,59 +36,60 @@ namespace Library
             return ds;
         }
 
-public static void SaveBook(int BookID, string BarcodeNumber, string BookName, string Author, int NumberOfPages, string Type, string Language, string Publisher, string Year, byte[] Picture)
-{
-    // SqlConnection'ı using ile kullanıyoruz
-    using (SqlConnection con = new SqlConnection(Constr))
-    {
-        // SqlCommand'ı using ile kullanıyoruz
-        using (SqlCommand com = new SqlCommand("if not exists(select * from Book where BookID=@ID) " +
-            "insert into Book (BookName,BarcodeNumber,Author,NumberOfPages,Type,Picture,Language,Publisher,Year) " +
-            "values (@BookName,@BarcodeNumber,@Author,@NumberOfPages,@Type,@Picture,@Language,@Publisher,@Year)" + //Verilerin parametre olarak girilmesini sağladık
-            " else update Book set BookName=@BookName,BarcodeNumber=@BarcodeNumber,Author=@Author,NumberOfPages=@NumberOfPages,Type=@Type,Picture=@Picture,Language=@Language,Publisher=@Publisher,Year=@Year Where BookID =@ID", con))
+        public static void SaveBook(int BookID, string BarcodeNumber, string BookName, string Author, int NumberOfPages, string Type, string Language, string Publisher, string Year, byte[] Picture)
         {
-            com.Parameters.AddWithValue("@ID", BookID);
-            com.Parameters.AddWithValue("@BarcodeNumber", BarcodeNumber);
-            com.Parameters.AddWithValue("@BookName", BookName);
-            com.Parameters.AddWithValue("@Author", Author);
-            com.Parameters.AddWithValue("@NumberOfPages", NumberOfPages);
-            com.Parameters.AddWithValue("@Type", Type);
-            com.Parameters.AddWithValue("@Language", Language);
-            com.Parameters.AddWithValue("@Publisher", Publisher);
-            com.Parameters.AddWithValue("@Year", Year);
-
-            // Eğer resim null ise, 0 olarak ekliyoruz
-            if (Picture == null)
+            // SqlConnection'ı using ile kullanıyoruz
+            using (SqlConnection con = new SqlConnection(Constr))
             {
-                com.Parameters.AddWithValue("@Picture", 0);
-            }
-            else
-            {
-                com.Parameters.AddWithValue("@Picture", Picture);
-            }
+                // SqlCommand'ı using ile kullanıyoruz
+                using (SqlCommand com = new SqlCommand("if not exists(select * from Book where BookID=@ID) " +
+                    "insert into Book (BookName,BarcodeNumber,Author,NumberOfPages,Type,Picture,Language,Publisher,Year) " +
+                    "values (@BookName,@BarcodeNumber,@Author,@NumberOfPages,@Type,@Picture,@Language,@Publisher,@Year)" + //Verilerin parametre olarak girilmesini sağladık
+                    " else update Book set BookName=@BookName,BarcodeNumber=@BarcodeNumber,Author=@Author,NumberOfPages=@NumberOfPages,Type=@Type,Picture=@Picture,Language=@Language,Publisher=@Publisher,Year=@Year Where BookID =@ID", con))
+                {
+                    com.Parameters.AddWithValue("@ID", BookID);
+                    com.Parameters.AddWithValue("@BarcodeNumber", BarcodeNumber);
+                    com.Parameters.AddWithValue("@BookName", BookName);
+                    com.Parameters.AddWithValue("@Author", Author);
+                    com.Parameters.AddWithValue("@NumberOfPages", NumberOfPages);
+                    com.Parameters.AddWithValue("@Type", Type);
+                    com.Parameters.AddWithValue("@Language", Language);
+                    com.Parameters.AddWithValue("@Publisher", Publisher);
+                    com.Parameters.AddWithValue("@Year", Year);
 
-            con.Open();
-            com.ExecuteNonQuery();
+                    // Eğer resim null ise, 0 olarak ekliyoruz
+                    if (Picture == null)
+                    {
+                        com.Parameters.AddWithValue("@Picture", 0);
+                    }
+                    else
+                    {
+                        com.Parameters.AddWithValue("@Picture", Picture);
+                    }
+
+                    con.Open();
+                    com.ExecuteNonQuery();
+                }
+            }
+            BackDatabase();
         }
-    }
-    BackDatabase();
-}
 
-public static void DeleteBook(int BookID)
-{
-    // SqlConnection'ı using ile kullanıyoruz
-    using (SqlConnection con = new SqlConnection(Constr))
-    {
-        // SqlCommand'ı using ile kullanıyoruz
-        using (SqlCommand com = new SqlCommand("Delete from Book Where BookID = @ID", con))
+        public static void DeleteBook(int BookID)
         {
-            com.Parameters.AddWithValue("@ID", BookID);
-            con.Open();
-            com.ExecuteNonQuery();
+            // SqlConnection'ı using ile kullanıyoruz
+            using (SqlConnection con = new SqlConnection(Constr))
+            {
+                // SqlCommand'ı using ile kullanıyoruz
+                using (SqlCommand com = new SqlCommand("Delete from Book Where BookID = @ID", con))
+                {
+                    com.Parameters.AddWithValue("@ID", BookID);
+                    con.Open();
+                    com.ExecuteNonQuery();
+                }
+            }
+            BackDatabase();
         }
-    }
-    BackDatabase();
-}        public static AutoCompleteStringCollection Authors()
+        public static AutoCompleteStringCollection Authors()
         {
             AutoCompleteStringCollection authors = new AutoCompleteStringCollection();
 
@@ -111,30 +112,47 @@ public static void DeleteBook(int BookID)
             }
             return authors;
         }
-        public static void SystemUser(int SystemUserID, string UserName, string UserSurname, string Email, string BirthDate, string PhoneNumber, string Address, byte[] UserPicture, string Password);
+        public static void SystemUser(int SystemUserID, string UserName, string UserSurname, string Email, string BirthDate, string PhoneNumber, string Address, byte[] UserPicture, string Password)
         {
             // SqlConnection'ı using ile kullanıyoruz
             using (SqlConnection con = new SqlConnection(Constr))
             {
                 // SqlCommand'ı using ile kullanıyoruz
-                using (SqlCommand com = new SqlCommand("if not exists (select * from SystemUser Where SystemUserID=@ID) insert into SystemUser (UserName, UserSurname, Email, BirthDate, PhoneNumber, Address, UserPicture, Password) values (@UserName, @UserSurname, @Email, @BirthDate, @PhoneNumber, @Address, @UserPicture, @Password) else Update SystemUser set UserName, UserSurname, Email, BirthDate, PhoneNumber, Address, UserPicture, Password Where SystemUserID = @ID", con);
+                using (SqlCommand com = new SqlCommand("IF NOT EXISTS (SELECT * FROM SystemUser WHERE SystemUserID = @ID) " +
+                                                        "INSERT INTO SystemUser (UserName, UserSurname, Email, BirthDate, PhoneNumber, Address, UserPicture, Password) " +
+                                                        "VALUES (@UserName, @UserSurname, @Email, @BirthDate, @PhoneNumber, @Address, @UserPicture, Encryptbypassphase('Moka', Convert(varbinary(max), @Password))) " +
+                                                        "ELSE " +
+                                                        "UPDATE SystemUser SET UserName = @UserName, UserSurname = @UserSurname, Email = @Email, BirthDate = @BirthDate, " +
+                                                        "PhoneNumber = @PhoneNumber, Address = @Address, UserPicture = @UserPicture, Password = @Password " +
+                                                        "WHERE SystemUserID = @ID", con))
                 {
                     com.Parameters.AddWithValue("@ID", SystemUserID);
-                    com.Parameters.AddWithValue("@UserName", UserName);
-                    com.Parameters.AddWithValue("@UserSurname", UserSurname);
-                    com.Parameters.AddWithValue("@Email", Email);
+                    com.Parameters.AddWithValue("@UserName", UserName.ToUpper());
+                    com.Parameters.AddWithValue("@UserSurname", UserSurname.ToUpper());
+                    com.Parameters.AddWithValue("@Email", Email.ToLower());
                     com.Parameters.AddWithValue("@BirthDate", BirthDate);
                     com.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
-                    com.Parameters.AddWithValue("@Address", Address);
-                    
+                    com.Parameters.AddWithValue("@Address", Address.ToUpper());
+                    com.Parameters.AddWithValue("@Password", Password);
 
+                    // Eğer resim null ise, 0 olarak ekliyoruz
+                    if (UserPicture == null)
+                    {
+                        com.Parameters.AddWithValue("@UserPicture", 0);
+                    }
+                    else
+                    {
+                        com.Parameters.AddWithValue("@UserPicture", UserPicture);
+                    }
                     con.Open();
                     com.ExecuteNonQuery();
                     con.Close();
                 }
             }
-            BackDatabase();
+
+            BackDatabase();  // Database işlemleri sonrasında çağrılan metod
         }
+
         public static void BackDatabase()
         {
             // SqlConnection'ı using ile kullanıyoruz

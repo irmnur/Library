@@ -45,6 +45,10 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.txtPasswordRepeat = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pboxUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +58,7 @@
             this.textBox.Location = new System.Drawing.Point(14, 14);
             this.textBox.Name = "textBox";
             this.textBox.ReadOnly = true;
-            this.textBox.Size = new System.Drawing.Size(148, 26);
+            this.textBox.Size = new System.Drawing.Size(160, 26);
             this.textBox.TabIndex = 0;
             this.textBox.TabStop = false;
             this.textBox.Text = "Name";
@@ -62,7 +66,7 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtName.Location = new System.Drawing.Point(168, 14);
+            this.txtName.Location = new System.Drawing.Point(180, 14);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(233, 26);
             this.txtName.TabIndex = 1;
@@ -70,7 +74,7 @@
             // txtSurname
             // 
             this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtSurname.Location = new System.Drawing.Point(168, 46);
+            this.txtSurname.Location = new System.Drawing.Point(180, 46);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(233, 26);
             this.txtSurname.TabIndex = 3;
@@ -81,7 +85,7 @@
             this.textBox3.Location = new System.Drawing.Point(14, 46);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(148, 26);
+            this.textBox3.Size = new System.Drawing.Size(160, 26);
             this.textBox3.TabIndex = 2;
             this.textBox3.TabStop = false;
             this.textBox3.Text = "Surname";
@@ -89,7 +93,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtEmail.Location = new System.Drawing.Point(168, 78);
+            this.txtEmail.Location = new System.Drawing.Point(180, 78);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(233, 26);
             this.txtEmail.TabIndex = 5;
@@ -100,7 +104,7 @@
             this.textBox5.Location = new System.Drawing.Point(14, 78);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(148, 26);
+            this.textBox5.Size = new System.Drawing.Size(160, 26);
             this.textBox5.TabIndex = 4;
             this.textBox5.TabStop = false;
             this.textBox5.Text = "E-mail";
@@ -111,7 +115,7 @@
             this.textBox7.Location = new System.Drawing.Point(14, 142);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(148, 26);
+            this.textBox7.Size = new System.Drawing.Size(160, 26);
             this.textBox7.TabIndex = 6;
             this.textBox7.TabStop = false;
             this.textBox7.Text = "Phone Number";
@@ -119,7 +123,7 @@
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtAddress.Location = new System.Drawing.Point(168, 174);
+            this.txtAddress.Location = new System.Drawing.Point(180, 238);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(233, 146);
@@ -128,10 +132,10 @@
             // textBox9
             // 
             this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox9.Location = new System.Drawing.Point(14, 174);
+            this.textBox9.Location = new System.Drawing.Point(14, 238);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(148, 26);
+            this.textBox9.Size = new System.Drawing.Size(160, 26);
             this.textBox9.TabIndex = 8;
             this.textBox9.TabStop = false;
             this.textBox9.Text = "Adrress";
@@ -142,7 +146,7 @@
             this.textBox11.Location = new System.Drawing.Point(14, 110);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(148, 26);
+            this.textBox11.Size = new System.Drawing.Size(160, 26);
             this.textBox11.TabIndex = 10;
             this.textBox11.TabStop = false;
             this.textBox11.Text = "Birth Date";
@@ -150,7 +154,7 @@
             // dtpBirthDate
             // 
             this.dtpBirthDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dtpBirthDate.Location = new System.Drawing.Point(168, 110);
+            this.dtpBirthDate.Location = new System.Drawing.Point(180, 110);
             this.dtpBirthDate.Name = "dtpBirthDate";
             this.dtpBirthDate.Size = new System.Drawing.Size(233, 26);
             this.dtpBirthDate.TabIndex = 12;
@@ -158,11 +162,12 @@
             // txtPhoneNumber
             // 
             this.txtPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtPhoneNumber.Location = new System.Drawing.Point(168, 142);
-            this.txtPhoneNumber.Mask = "(xxx) xxx xx xx";
+            this.txtPhoneNumber.Location = new System.Drawing.Point(180, 142);
+            this.txtPhoneNumber.Mask = "(999) 000-0000";
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(233, 26);
             this.txtPhoneNumber.TabIndex = 13;
+            this.txtPhoneNumber.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtPhoneNumber_MaskInputRejected);
             // 
             // pboxUser
             // 
@@ -170,7 +175,7 @@
             this.pboxUser.BackgroundImage = global::Library.Properties.Resources.pictureicon;
             this.pboxUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pboxUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pboxUser.Location = new System.Drawing.Point(419, 12);
+            this.pboxUser.Location = new System.Drawing.Point(435, 12);
             this.pboxUser.Name = "pboxUser";
             this.pboxUser.Size = new System.Drawing.Size(193, 188);
             this.pboxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -183,7 +188,7 @@
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnClear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClear.BackgroundImage")));
             this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClear.Location = new System.Drawing.Point(12, 327);
+            this.btnClear.Location = new System.Drawing.Point(12, 404);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(139, 111);
             this.btnClear.TabIndex = 20;
@@ -196,7 +201,7 @@
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSave.BackgroundImage = global::Library.Properties.Resources.diskicon;
             this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSave.Location = new System.Drawing.Point(245, 327);
+            this.btnSave.Location = new System.Drawing.Point(253, 404);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 111);
             this.btnSave.TabIndex = 21;
@@ -208,19 +213,63 @@
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackgroundImage = global::Library.Properties.Resources.exiticon;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnExit.Location = new System.Drawing.Point(473, 327);
+            this.btnExit.Location = new System.Drawing.Point(489, 404);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(139, 111);
             this.btnExit.TabIndex = 22;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // txtPasswordRepeat
+            // 
+            this.txtPasswordRepeat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtPasswordRepeat.Location = new System.Drawing.Point(180, 206);
+            this.txtPasswordRepeat.Name = "txtPasswordRepeat";
+            this.txtPasswordRepeat.PasswordChar = '*';
+            this.txtPasswordRepeat.Size = new System.Drawing.Size(233, 26);
+            this.txtPasswordRepeat.TabIndex = 26;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBox2.Location = new System.Drawing.Point(14, 206);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(160, 26);
+            this.textBox2.TabIndex = 25;
+            this.textBox2.TabStop = false;
+            this.textBox2.Text = "Password (Repeat)";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtPassword.Location = new System.Drawing.Point(180, 174);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(233, 26);
+            this.txtPassword.TabIndex = 24;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBox6.Location = new System.Drawing.Point(14, 174);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(160, 26);
+            this.textBox6.TabIndex = 23;
+            this.textBox6.TabStop = false;
+            this.textBox6.Text = "Password";
+            // 
             // User_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 450);
+            this.ClientSize = new System.Drawing.Size(640, 527);
             this.ControlBox = false;
+            this.Controls.Add(this.txtPasswordRepeat);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClear);
@@ -265,5 +314,9 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.TextBox txtPasswordRepeat;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }

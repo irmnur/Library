@@ -27,6 +27,8 @@ namespace Library
                     {
                         c.ResetText();
                     }
+                    if (c is MaskedTextBox)
+                        c.ResetText();
                     if (c is PictureBox)
                         (c as PictureBox).Image = null;
                 }
@@ -50,8 +52,39 @@ namespace Library
             PicData = File.ReadAllBytes(selectPic.FileName);
             pboxBook.Image = Image.FromFile(selectPic.FileName);
         }
-
         private void btnSave_Click(object sender, EventArgs e)
+        {
+            bool Full = true;
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox && c.TabStop == true)
+                {
+                    c.BackColor = Color.White;
+                }
+
+            }
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox && c.TabStop == true && c.Text == string.Empty)
+                {
+                    c.BackColor = Color.MediumVioletRed;
+                    Full = false;
+                }
+            }
+            if (!Full)
+            {
+                MessageBox.Show("Please fill in the required fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (txtPassword.Text != txtPasswordRepeat.Text)
+            {
+                MessageBox.Show("Passwords do not match.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DB.SystemUser(DB.SystemUserID, txtName.Text, txtSurname.Text, txtEmail.Text, dtpBirthDate.Value.ToString(), txtPhoneNumber.Text, txtAddress.Text, PicData, txtPassword.Text);
+        }
+
+        private void txtPhoneNumber_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }

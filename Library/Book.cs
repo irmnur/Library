@@ -66,7 +66,7 @@ namespace Library
 
             if (!Full)
             {
-                MessageBox.Show("Barkod numarası ve kitap adı sekmeleri boş bırakılamaz", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please fill in the required fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             
