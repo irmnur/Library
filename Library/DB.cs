@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,7 +20,7 @@ namespace Library
         public static int UserID = 0;
         public static bool Stop = false;
         public static bool Search = false;
-        public static string Constr = "HIKAMSE\\SQLEXPRESS;database=BookStore;Integrated Security=True;";
+        public static string Constr = "Data Source=HIKAMSE\\SQLEXPRESS;Initial Catalog=BookStore;Integrated Security=True;";
 
 
         public static DataSet GetBooks()
@@ -36,6 +38,46 @@ namespace Library
             return ds;
         }
 
+        public static DataSet GetBooksToEdit()
+        {
+            DataSet ds = new DataSet();
+            // SqlConnection'ı using ile kullanıyoruz
+            using (SqlConnection con = new SqlConnection(Constr))
+            {
+                // SqlDataAdapter da 'using' ile kullanılmalı
+                using (SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Book WHERE Editable = 1", con))
+                {
+                    da.Fill(ds);
+                }
+            }
+            return ds;
+        }
+
+        public static void UpdateBook(int BookID, string BarcodeNumber, string BookName, string Author, int NumberOfPages, string Type, string Language, string Publisher, string Year) 
+        {
+            // SqlConnection'ı using ile kullanıyoruz
+            using (SqlConnection con = new SqlConnection(Constr))
+            {
+                // SqlCommand'ı using ile kullanıyoruz
+                SqlCommand com = new SqlCommand("UPDATE Book SET BookName = @BookName, BarcodeNumber = @BarcodeNumber, Author = @Author, NumberOfPages = @NumberOfPages, Type = @Type, Picture = @Picture, Language = @Language, Publisher = @Publisher, Year = @Year WHERE BookID = @ID", con);
+                {
+                    com.Parameters.AddWithValue("@ID", BookID);
+                    com.Parameters.AddWithValue("@BookName", BookName.ToUpper());
+                    com.Parameters.AddWithValue("@BarcodeNumber", BarcodeNumber);
+                    com.Parameters.AddWithValue("@Author", Author.ToUpper());
+                    com.Parameters.AddWithValue("@NumberOfPages", NumberOfPages);
+                    com.Parameters.AddWithValue("@Type", Type.ToUpper());
+                    com.Parameters.AddWithValue("@Language", Language.ToUpper());
+                    com.Parameters.AddWithValue("@Publisher", Publisher.ToUpper());
+                    com.Parameters.AddWithValue("@Year", Year.ToUpper());
+
+                    con.Open();
+                    com.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            BackDatabase();
+        }
         public static void SaveBook(int BookID, string BarcodeNumber, string BookName, string Author, int NumberOfPages, string Type, string Language, string Publisher, string Year, byte[] Picture)
         {
             // SqlConnection'ı using ile kullanıyoruz
@@ -48,14 +90,14 @@ namespace Library
                     " else update Book set BookName=@BookName,BarcodeNumber=@BarcodeNumber,Author=@Author,NumberOfPages=@NumberOfPages,Type=@Type,Picture=@Picture,Language=@Language,Publisher=@Publisher,Year=@Year Where BookID =@ID", con))
                 {
                     com.Parameters.AddWithValue("@ID", BookID);
+                    com.Parameters.AddWithValue("@BookName", BookName.ToUpper());
                     com.Parameters.AddWithValue("@BarcodeNumber", BarcodeNumber);
-                    com.Parameters.AddWithValue("@BookName", BookName);
-                    com.Parameters.AddWithValue("@Author", Author);
+                    com.Parameters.AddWithValue("@Author", Author.ToUpper());
                     com.Parameters.AddWithValue("@NumberOfPages", NumberOfPages);
-                    com.Parameters.AddWithValue("@Type", Type);
-                    com.Parameters.AddWithValue("@Language", Language);
-                    com.Parameters.AddWithValue("@Publisher", Publisher);
-                    com.Parameters.AddWithValue("@Year", Year);
+                    com.Parameters.AddWithValue("@Type", Type.ToUpper());
+                    com.Parameters.AddWithValue("@Language", Language.ToUpper());
+                    com.Parameters.AddWithValue("@Publisher", Publisher.ToUpper());
+                    com.Parameters.AddWithValue("@Year", Year.ToUpper());
 
                     // Eğer resim null ise, 0 olarak ekliyoruz
                     if (Picture == null)

@@ -192,5 +192,12 @@ namespace Library
             User_Form User_Form = new User_Form();
             User_Form.ShowDialog();
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            UpdateBook book = new UpdateBook();
+            book.ShowDialog();
+            GetAllBook();
+        }
     }
 }

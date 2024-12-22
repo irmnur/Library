@@ -288,8 +288,9 @@
             this.Controls.Add(this.textBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "User_Form";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User_Form";
+            this.Text = "User Form";
             ((System.ComponentModel.ISupportInitialize)(this.pboxUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

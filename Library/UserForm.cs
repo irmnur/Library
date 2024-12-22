@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Library
 {
@@ -50,7 +51,7 @@ namespace Library
             selectPic.Filter = "(*.jpg)|*.jpg";
             if (selectPic.ShowDialog() == DialogResult.No) return;
             PicData = File.ReadAllBytes(selectPic.FileName);
-            pboxBook.Image = Image.FromFile(selectPic.FileName);
+            pboxUser.Image = Image.FromFile(selectPic.FileName);
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
