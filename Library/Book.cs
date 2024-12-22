@@ -86,8 +86,7 @@ namespace Library
             selectPic.Filter = "(*.jpg)|*.jpg";
             if (selectPic.ShowDialog() == DialogResult.No) return;
             PicData=File.ReadAllBytes(selectPic.FileName);
-            pboxBook.Image=Image.FromFile(selectPic.FileName);
-
+            pboxUser.Image=Image.FromFile(selectPic.FileName);
         }
 
         private void Book_Load(object sender, EventArgs e)
@@ -132,7 +131,7 @@ namespace Library
                         fs.Write(PicData, 0, PicData.Length);
                         fs.Flush();
                         fs.Close();
-                        pboxBook.Image = Image.FromFile(fileName);
+                        pboxUser.Image = Image.FromFile(fileName);
                     }
                 }
                 dr.Close();

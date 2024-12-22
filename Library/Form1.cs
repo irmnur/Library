@@ -187,6 +187,10 @@ namespace Library
             dataGridView1.DataSource = DB.SearchBook((sender as TextBox).Text, rbName).Tables[0];
         }
 
-
+        private void button7_Click(object sender, EventArgs e)
+        {
+            User_Form User_Form = new User_Form();
+            User_Form.ShowDialog();
+        }
     }
 }

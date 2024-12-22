@@ -20,3 +20,4 @@ C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.csproj.Gener
 C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.csproj.CoreCompileInputs.cache
 C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.exe
 C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.pdb
+C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.User_Form.resources

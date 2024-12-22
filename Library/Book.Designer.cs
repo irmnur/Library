@@ -43,13 +43,13 @@
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.txtPublisher = new System.Windows.Forms.TextBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
-            this.pboxBook = new System.Windows.Forms.PictureBox();
+            this.pboxUser = new System.Windows.Forms.PictureBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxBook)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxUser)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -190,26 +190,26 @@
             this.textBox14.TabStop = false;
             this.textBox14.Text = "Type";
             // 
-            // pboxBook
+            // pboxUser
             // 
-            this.pboxBook.BackgroundImage = global::Library.Properties.Resources.pictureicon;
-            this.pboxBook.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pboxBook.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pboxBook.Location = new System.Drawing.Point(487, 25);
-            this.pboxBook.Name = "pboxBook";
-            this.pboxBook.Size = new System.Drawing.Size(205, 149);
-            this.pboxBook.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pboxBook.TabIndex = 8;
-            this.pboxBook.TabStop = false;
-            this.pboxBook.Click += new System.EventHandler(this.pboxBook_Click);
-            this.pboxBook.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pboxBook_MouseDoubleClick);
+            this.pboxUser.BackgroundImage = global::Library.Properties.Resources.pictureicon;
+            this.pboxUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pboxUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pboxUser.Location = new System.Drawing.Point(487, 25);
+            this.pboxUser.Name = "pboxUser";
+            this.pboxUser.Size = new System.Drawing.Size(205, 149);
+            this.pboxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pboxUser.TabIndex = 8;
+            this.pboxUser.TabStop = false;
+            this.pboxUser.Click += new System.EventHandler(this.pboxBook_Click);
+            this.pboxUser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pboxBook_MouseDoubleClick);
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSave.BackgroundImage = global::Library.Properties.Resources.diskicon;
             this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSave.Location = new System.Drawing.Point(353, 398);
+            this.btnSave.Location = new System.Drawing.Point(337, 398);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 111);
             this.btnSave.TabIndex = 15;
@@ -218,7 +218,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackgroundImage = global::Library.Properties.Resources.exiticon;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExit.Location = new System.Drawing.Point(628, 398);
@@ -249,7 +249,7 @@
             // 
             // button1
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.Location = new System.Drawing.Point(12, 398);
@@ -277,7 +277,7 @@
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.txtPublisher);
             this.Controls.Add(this.textBox14);
-            this.Controls.Add(this.pboxBook);
+            this.Controls.Add(this.pboxUser);
             this.Controls.Add(this.txtBarcodeNumber);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.txtBookName);
@@ -291,7 +291,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book";
             this.Load += new System.EventHandler(this.Book_Load_1);
-            ((System.ComponentModel.ISupportInitialize)(this.pboxBook)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,7 +307,7 @@
         private System.Windows.Forms.TextBox txtBookName;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox txtBarcodeNumber;
-        private System.Windows.Forms.PictureBox pboxBook;
+        private System.Windows.Forms.PictureBox pboxUser;
         private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox txtLanguage;
