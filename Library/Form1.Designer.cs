@@ -30,10 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.gbSearch = new System.Windows.Forms.GroupBox();
             this.rbAuthor = new System.Windows.Forms.RadioButton();
             this.rbBookName = new System.Windows.Forms.RadioButton();
@@ -54,10 +50,6 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.button8);
-            this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.gbSearch);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
@@ -67,48 +59,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1617, 206);
             this.panel1.TabIndex = 0;
-            // 
-            // button8
-            // 
-            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button8.Location = new System.Drawing.Point(725, 0);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(139, 111);
-            this.button8.TabIndex = 8;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button7.Location = new System.Drawing.Point(580, 0);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(139, 111);
-            this.button7.TabIndex = 7;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button6
-            // 
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button6.Location = new System.Drawing.Point(435, 0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(139, 111);
-            this.button6.TabIndex = 6;
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.Location = new System.Drawing.Point(290, 0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(139, 111);
-            this.button5.TabIndex = 5;
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // gbSearch
             // 
@@ -123,7 +73,7 @@
             this.gbSearch.TabStop = false;
             this.gbSearch.Text = "Search";
             this.gbSearch.Visible = false;
-            this.gbSearch.Enter += new System.EventHandler(this.groupBox1_Enter);
+        
             // 
             // rbAuthor
             // 
@@ -146,7 +96,7 @@
             this.rbBookName.TabStop = true;
             this.rbBookName.Text = "Book Name";
             this.rbBookName.UseVisualStyleBackColor = true;
-            this.rbBookName.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+      
             // 
             // rbBarcodeNumber
             // 
@@ -172,7 +122,7 @@
             // 
             this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.Location = new System.Drawing.Point(870, 0);
+            this.button4.Location = new System.Drawing.Point(290, 0);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(139, 111);
             this.button4.TabIndex = 3;
@@ -268,10 +218,6 @@
         private System.Windows.Forms.RadioButton rbBarcodeNumber;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.RadioButton rbAuthor;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button8;
     }
 }
 

@@ -22,3 +22,14 @@ C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.exe
 C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.pdb
 C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.User_Form.resources
 C:\Users\MONSTER\Documents\GitHub\Library\Library\obj\Debug\Library.UpdateBook.resources
+C:\Users\Nur\Desktop\Library-main\Library\bin\Debug\Library.exe.config
+C:\Users\Nur\Desktop\Library-main\Library\bin\Debug\Library.exe
+C:\Users\Nur\Desktop\Library-main\Library\bin\Debug\Library.pdb
+C:\Users\Nur\Desktop\Library-main\Library\obj\Debug\Library.csproj.AssemblyReference.cache
+C:\Users\Nur\Desktop\Library-main\Library\obj\Debug\Library.Book.resources
+C:\Users\Nur\Desktop\Library-main\Library\obj\Debug\Library.Form1.resources
+C:\Users\Nur\Desktop\Library-main\Library\obj\Debug\Library.Properties.Resources.resources
+C:\Users\Nur\Desktop\Library-main\Library\obj\Debug\Library.csproj.GenerateResource.cache
+C:\Users\Nur\Desktop\Library-main\Library\obj\Debug\Library.csproj.CoreCompileInputs.cache
+C:\Users\Nur\Desktop\Library-main\Library\obj\Debug\Library.exe
+C:\Users\Nur\Desktop\Library-main\Library\obj\Debug\Library.pdb

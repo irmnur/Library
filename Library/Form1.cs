@@ -21,10 +21,7 @@ namespace Library
             InitializeComponent();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
         private void Form1_Load(object sender, EventArgs e)
         {
             Options();
@@ -83,25 +80,7 @@ namespace Library
             Book.ShowDialog();
             GetAllBook();
         }
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void contextMenuStrip1_Opening1(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+   
 
         int Row = 0;
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -112,10 +91,7 @@ namespace Library
             Book.ShowDialog();
             GetAllBook();
         }
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+    
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -148,15 +124,6 @@ namespace Library
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -187,17 +154,8 @@ namespace Library
             dataGridView1.DataSource = DB.SearchBook((sender as TextBox).Text, rbName).Tables[0];
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            User_Form User_Form = new User_Form();
-            User_Form.ShowDialog();
-        }
+   
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            UpdateBook book = new UpdateBook();
-            book.ShowDialog();
-            GetAllBook();
-        }
+      
     }
 }

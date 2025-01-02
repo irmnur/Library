@@ -16,6 +16,15 @@ namespace Library
 {
     public partial class Book : Form
     {
+        public int BookID { get; set; }
+        public string BarcodeNumber { get; set; }
+        public string BookName { get; set; }
+        public string Author { get; set; }
+        public int NumberOfPages { get; set; }
+        public string Type { get; set; }
+        public string Language { get; set; }
+        public string Publisher { get; set; }
+        public string Year { get; set; }
         public Book()
         {
             InitializeComponent();
@@ -101,41 +110,70 @@ namespace Library
 
         private void Book_Load_1(object sender, EventArgs e)
         {
-            Options();
+            Options();  // Genel ayarları yapıyoruz
+
+            // Kitap ID'si geçerliyse işlemlere devam ediyoruz
             if (DB.BookID > 0)
             {
-                txtBarcodeNumber.ReadOnly = true;
-                SqlConnection con = new SqlConnection(DB.Constr);
-                SqlCommand com = new SqlCommand("select * from Book Where BookID = @ID", con);
-                com.Parameters.AddWithValue("@ID", DB.BookID);
-                con.Open();
-                SqlDataReader dr = com.ExecuteReader();
-                String fileName = "";
-                while (dr.Read())
+                txtBarcodeNumber.ReadOnly = true;  // Barkod numarasını düzenlenemez yapıyoruz
+
+                // Veritabanı bağlantısını kullanmak için 'using' ifadesi kullanıyoruz
+                using (SqlConnection con = new SqlConnection(DB.Constr))
                 {
-                    txtBookName.Text = dr["BookName"].ToString();
-                    txtBarcodeNumber.Text = dr["BarcodeNumber"].ToString();
-                    txtAuthor.Text = dr["Author"].ToString();
-                    txtNumberOfPages.Text = dr["NumberOfPages"].ToString();
-                    txtType.Text = dr["Type"].ToString();
-                    txtLanguage.Text = dr["Language"].ToString();
-                    txtPublisher.Text = dr["Publisher"].ToString();
-                    txtYear.Text = dr["Year"].ToString();
-                    //We are takeing the picture from database.
-                    PicData = (byte[])dr["Picture"];
-                    if (PicData.Length > 4)
+                    // SQL sorgusu hazırlıyoruz
+                    SqlCommand com = new SqlCommand("SELECT * FROM Book WHERE BookID = @ID", con);
+                    com.Parameters.AddWithValue("@ID", DB.BookID);  // Parametreyi ekliyoruz
+
+                    try
                     {
-                        Guid guid = Guid.NewGuid();
-                        fileName = "C:\\BookStore\\Picture\\Images" + guid.ToString().Substring(0, 5) + ".jpeg";
-                        FileStream fs = new FileStream(fileName, FileMode.Create);
-                        fs.Write(PicData, 0, PicData.Length);
-                        fs.Flush();
-                        fs.Close();
-                        pboxUser.Image = Image.FromFile(fileName);
+                        con.Open();  // Bağlantıyı açıyoruz
+
+                        // Verileri okumak için SqlDataReader kullanıyoruz
+                        using (SqlDataReader dr = com.ExecuteReader())
+                        {
+                            string fileName = "";  // Resim dosyasının adı
+
+                            // Her bir kitap kaydını işleyecek döngü
+                            while (dr.Read())
+                            {
+                                // Kitap bilgilerini TextBox'lara yerleştiriyoruz
+                                txtBookName.Text = dr["BookName"].ToString();
+                                txtBarcodeNumber.Text = dr["BarcodeNumber"].ToString();
+                                txtAuthor.Text = dr["Author"].ToString();
+                                txtNumberOfPages.Text = dr["NumberOfPages"].ToString();
+                                txtType.Text = dr["Type"].ToString();
+                                txtLanguage.Text = dr["Language"].ToString();
+                                txtPublisher.Text = dr["Publisher"].ToString();
+                                txtYear.Text = dr["Year"].ToString();
+
+                                // Resim verisini alıyoruz
+                                byte[] PicData = (byte[])dr["Picture"];
+
+                                // Resim verisi varsa dosyaya kaydediyoruz
+                                if (PicData.Length > 4)
+                                {
+                                    Guid guid = Guid.NewGuid();  // Benzersiz bir GUID oluşturuyoruz
+                                    fileName = Path.Combine("C:\\BookStore\\Picture\\Images", guid.ToString().Substring(0, 5) + ".jpeg");
+
+                                    // Resmi dosyaya yazıyoruz
+                                    using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                                    {
+                                        fs.Write(PicData, 0, PicData.Length);
+                                        fs.Flush();  // Veriyi diske yazıyoruz
+                                    }
+
+                                    // Kaydedilen resimi formda gösteriyoruz
+                                    pboxUser.Image = Image.FromFile(fileName);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Hata durumunda bir işlem yapılabilir
+                        MessageBox.Show($"Error: {ex.Message}");
                     }
                 }
-                dr.Close();
-                con.Close();
             }
         }
 
@@ -146,7 +184,7 @@ namespace Library
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Girmiş olduğunuz veriler silinecektir.\nDevam edilsin mi?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("The data you entered will be deleted.\nDo you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 foreach (Control c in this.Controls)
                 {

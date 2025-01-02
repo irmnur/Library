@@ -209,7 +209,7 @@
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSave.BackgroundImage = global::Library.Properties.Resources.diskicon;
             this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSave.Location = new System.Drawing.Point(337, 398);
+            this.btnSave.Location = new System.Drawing.Point(329, 383);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 111);
             this.btnSave.TabIndex = 15;
@@ -221,7 +221,7 @@
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackgroundImage = global::Library.Properties.Resources.exiticon;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnExit.Location = new System.Drawing.Point(628, 398);
+            this.btnExit.Location = new System.Drawing.Point(574, 374);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(139, 111);
             this.btnExit.TabIndex = 16;
@@ -252,7 +252,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(12, 398);
+            this.button1.Location = new System.Drawing.Point(12, 383);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 111);
             this.button1.TabIndex = 19;

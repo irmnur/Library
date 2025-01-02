@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.IO;
 
 namespace Library
 {
@@ -20,16 +21,17 @@ namespace Library
         public static int UserID = 0;
         public static bool Stop = false;
         public static bool Search = false;
-        public static string Constr = "Data Source=HIKAMSE\\SQLEXPRESS;Initial Catalog=BookStore;Integrated Security=True;";
+
+        public static string Constr = "Data Source=DESKTOP-OSFLJP7\\SQLEXPRESS;Initial Catalog=BookStore;Integrated Security=True;";
 
 
         public static DataSet GetBooks()
         {
             DataSet ds = new DataSet();
-            // SqlConnection'ı using ile kullanıyoruz
+        
             using (SqlConnection con = new SqlConnection(Constr))
             {
-                // SqlDataAdapter da 'using' ile kullanılmalı
+         
                 using (SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Book", con))
                 {
                     da.Fill(ds);
@@ -38,56 +40,20 @@ namespace Library
             return ds;
         }
 
-        public static DataSet GetBooksToEdit()
-        {
-            DataSet ds = new DataSet();
-            // SqlConnection'ı using ile kullanıyoruz
-            using (SqlConnection con = new SqlConnection(Constr))
-            {
-                // SqlDataAdapter da 'using' ile kullanılmalı
-                using (SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Book WHERE Editable = 1", con))
-                {
-                    da.Fill(ds);
-                }
-            }
-            return ds;
-        }
+        
 
-        public static void UpdateBook(int BookID, string BarcodeNumber, string BookName, string Author, int NumberOfPages, string Type, string Language, string Publisher, string Year) 
-        {
-            // SqlConnection'ı using ile kullanıyoruz
-            using (SqlConnection con = new SqlConnection(Constr))
-            {
-                // SqlCommand'ı using ile kullanıyoruz
-                SqlCommand com = new SqlCommand("UPDATE Book SET BookName = @BookName, BarcodeNumber = @BarcodeNumber, Author = @Author, NumberOfPages = @NumberOfPages, Type = @Type, Picture = @Picture, Language = @Language, Publisher = @Publisher, Year = @Year WHERE BookID = @ID", con);
-                {
-                    com.Parameters.AddWithValue("@ID", BookID);
-                    com.Parameters.AddWithValue("@BookName", BookName.ToUpper());
-                    com.Parameters.AddWithValue("@BarcodeNumber", BarcodeNumber);
-                    com.Parameters.AddWithValue("@Author", Author.ToUpper());
-                    com.Parameters.AddWithValue("@NumberOfPages", NumberOfPages);
-                    com.Parameters.AddWithValue("@Type", Type.ToUpper());
-                    com.Parameters.AddWithValue("@Language", Language.ToUpper());
-                    com.Parameters.AddWithValue("@Publisher", Publisher.ToUpper());
-                    com.Parameters.AddWithValue("@Year", Year.ToUpper());
-
-                    con.Open();
-                    com.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
-            BackDatabase();
-        }
+       
         public static void SaveBook(int BookID, string BarcodeNumber, string BookName, string Author, int NumberOfPages, string Type, string Language, string Publisher, string Year, byte[] Picture)
         {
-            // SqlConnection'ı using ile kullanıyoruz
+           
             using (SqlConnection con = new SqlConnection(Constr))
             {
-                // SqlCommand'ı using ile kullanıyoruz
+                
                 using (SqlCommand com = new SqlCommand("if not exists(select * from Book where BookID=@ID) " +
                     "insert into Book (BookName,BarcodeNumber,Author,NumberOfPages,Type,Picture,Language,Publisher,Year) " +
                     "values (@BookName,@BarcodeNumber,@Author,@NumberOfPages,@Type,@Picture,@Language,@Publisher,@Year)" + //Verilerin parametre olarak girilmesini sağladık
-                    " else update Book set BookName=@BookName,BarcodeNumber=@BarcodeNumber,Author=@Author,NumberOfPages=@NumberOfPages,Type=@Type,Picture=@Picture,Language=@Language,Publisher=@Publisher,Year=@Year Where BookID =@ID", con))
+                    " else update Book set BookName=@BookName,BarcodeNumber=@BarcodeNumber,Author=@Author,NumberOfPages=@NumberOfPages,Type=@Type,Picture=@Picture,Language=@Language," +
+                    "Publisher=@Publisher,Year=@Year Where BookID =@ID", con))
                 {
                     com.Parameters.AddWithValue("@ID", BookID);
                     com.Parameters.AddWithValue("@BookName", BookName.ToUpper());
@@ -99,7 +65,7 @@ namespace Library
                     com.Parameters.AddWithValue("@Publisher", Publisher.ToUpper());
                     com.Parameters.AddWithValue("@Year", Year.ToUpper());
 
-                    // Eğer resim null ise, 0 olarak ekliyoruz
+                    
                     if (Picture == null)
                     {
                         com.Parameters.AddWithValue("@Picture", 0);
@@ -118,10 +84,10 @@ namespace Library
 
         public static void DeleteBook(int BookID)
         {
-            // SqlConnection'ı using ile kullanıyoruz
+            
             using (SqlConnection con = new SqlConnection(Constr))
             {
-                // SqlCommand'ı using ile kullanıyoruz
+                
                 using (SqlCommand com = new SqlCommand("Delete from Book Where BookID = @ID", con))
                 {
                     com.Parameters.AddWithValue("@ID", BookID);
@@ -135,14 +101,14 @@ namespace Library
         {
             AutoCompleteStringCollection authors = new AutoCompleteStringCollection();
 
-            // SqlConnection'ı using ile kullanıyoruz
+           
             using (SqlConnection con = new SqlConnection(Constr))
             {
-                // SqlCommand'ı using ile kullanıyoruz
+                
                 using (SqlCommand com = new SqlCommand("select distinct Author from Book", con))
                 {
                     con.Open();
-                    // SqlDataReader'ı using ile kullanıyoruz
+                    
                     using (SqlDataReader dr = com.ExecuteReader())
                     {
                         while (dr.Read())
@@ -154,53 +120,14 @@ namespace Library
             }
             return authors;
         }
-        public static void SystemUser(int SystemUserID, string UserName, string UserSurname, string Email, string BirthDate, string PhoneNumber, string Address, byte[] UserPicture, string Password)
-        {
-            // SqlConnection'ı using ile kullanıyoruz
-            using (SqlConnection con = new SqlConnection(Constr))
-            {
-                // SqlCommand'ı using ile kullanıyoruz
-                using (SqlCommand com = new SqlCommand("IF NOT EXISTS (SELECT * FROM SystemUser WHERE SystemUserID = @ID) " +
-                                                        "INSERT INTO SystemUser (UserName, UserSurname, Email, BirthDate, PhoneNumber, Address, UserPicture, Password) " +
-                                                        "VALUES (@UserName, @UserSurname, @Email, @BirthDate, @PhoneNumber, @Address, @UserPicture, Encryptbypassphase('Moka', Convert(varbinary(max), @Password))) " +
-                                                        "ELSE " +
-                                                        "UPDATE SystemUser SET UserName = @UserName, UserSurname = @UserSurname, Email = @Email, BirthDate = @BirthDate, " +
-                                                        "PhoneNumber = @PhoneNumber, Address = @Address, UserPicture = @UserPicture, Password = @Password " +
-                                                        "WHERE SystemUserID = @ID", con))
-                {
-                    com.Parameters.AddWithValue("@ID", SystemUserID);
-                    com.Parameters.AddWithValue("@UserName", UserName.ToUpper());
-                    com.Parameters.AddWithValue("@UserSurname", UserSurname.ToUpper());
-                    com.Parameters.AddWithValue("@Email", Email.ToLower());
-                    com.Parameters.AddWithValue("@BirthDate", BirthDate);
-                    com.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
-                    com.Parameters.AddWithValue("@Address", Address.ToUpper());
-                    com.Parameters.AddWithValue("@Password", Password);
-
-                    // Eğer resim null ise, 0 olarak ekliyoruz
-                    if (UserPicture == null)
-                    {
-                        com.Parameters.AddWithValue("@UserPicture", 0);
-                    }
-                    else
-                    {
-                        com.Parameters.AddWithValue("@UserPicture", UserPicture);
-                    }
-                    con.Open();
-                    com.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
-
-            BackDatabase();  // Database işlemleri sonrasında çağrılan metod
-        }
+        
 
         public static void BackDatabase()
         {
-            // SqlConnection'ı using ile kullanıyoruz
+            
             using (SqlConnection con = new SqlConnection(Constr))
             {
-                // SqlCommand'ı using ile kullanıyoruz
+                
                 using (SqlCommand com = new SqlCommand("backup database BookStore to disk='C:\\BookStore\\BookStore.bak' with format", con))
                 {
                     con.Open();
@@ -209,12 +136,21 @@ namespace Library
             }
         }
 
+        public static byte[] GetImageBytes(string imagePath)
+        {
+            byte[] imageBytes = null;
+            if (!string.IsNullOrEmpty(imagePath))
+            {
+                
+                imageBytes = File.ReadAllBytes(imagePath);
+            }
+            return imageBytes;
+        }
+
         public static DataSet SearchBook(string text, string radiobutton)
         {
             DataSet ds = new DataSet();
-            string query = "";  // SQL sorgusunu buraya depolayacağız
-
-            // Veritabanı bağlantısını 'using' bloğuyla kullanalım
+            string query = "";  
             using (SqlConnection con = new SqlConnection(Constr))
             {
                 con.Open();
@@ -240,16 +176,15 @@ namespace Library
                         break;
 
                     default:
-                        // Geçerli bir sorgu yoksa boş bırakabiliriz
+                        
                         break;
                 }
 
-                // Sorgu boş değilse, SqlDataAdapter ile veri çekmeye başlıyoruz
                 if (!string.IsNullOrEmpty(query))
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(query, con))
                     {
-                        // Parametre ekliyoruz
+                       
                         switch (radiobutton)
                         {
                             case "Barcode Number":
@@ -263,7 +198,7 @@ namespace Library
                                 break;
                         }
 
-                        // Veriyi DataSet'e yüklüyoruz
+                        
                         da.Fill(ds);
                     }
                 }
